@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proses Donasi - Scholify</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <style>
+        .payment-detail-box {
+            background: #FFF8F0;
+            border: 1px solid #EB9329;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 20px;
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+        .va-number {
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            color: #333;
+            margin: 10px 0;
+            background: white;
+            padding: 15px;
+            text-align: center;
+            border-radius: 8px;
+            border: 1px dashed #ccc;
+        }
+        .qr-container {
+            text-align: center;
+            background: white;
+            padding: 15px;
+            border-radius: 12px;
+            display: inline-block;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .copy-btn {
+            background: none;
+            border: none;
+            color: #EB9329;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            text-decoration: underline;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <img src="../Assets/gambar only.png" alt="Scholify Logo" class="logo-img">
+                <span class="logo-text">Scholify</span>
+            </a>
+            <nav class="nav-menu">
+                <a href="fundraisers.html" class="nav-link">← Batalkan Donasi</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="donation-section">
+        <div class="donation-container">
+            <div class="step-indicator">
+                <div class="step active" data-step="1">
+                    <span class="step-number">1</span>
+                    <span class="step-label">Pilih Tipe</span>
+                </div>
+                <div class="connector"></div>
+                <div class="step" data-step="2">
+                    <span class="step-number">2</span>
+                    <span class="step-label">Detail & Bayar</span>
+                </div>
+            </div>
+
+            <div class="donation-step active" id="step-1">
+                <h2 style="text-align: center; margin-bottom: 30px;">Apa yang ingin Anda donasikan?</h2>
+                <div class="donation-types" id="type-container">
+                    <div class="type-card" id="card-barang" onclick="selectType('barang', this)">
+                        <div class="type-icon">📦</div>
+                        <h3>Donasi Barang</h3>
+                        <p>Meja, Kursi, Buku, Laptop</p>
+                    </div>
+                    <div class="type-card" id="card-uang" onclick="selectType('uang', this)">
+                        <div class="type-icon">💰</div>
+                        <h3>Donasi Uang</h3>
+                        <p>Transfer Bank, QRIS, E-Wallet</p>
+                    </div>
+                </div>
+                <button class="btn-cta" onclick="nextStep(2)" style="width: 100%; margin-top: 20px;">Lanjut ke Detail →</button>
+            </div>
+
+            <div class="donation-step" id="step-2">
+                
+                <div id="barang-form" style="display: none;">
+                    <h2>Detail Barang Donasi</h2>
+                    <div class="info-box">
+                        <strong>🏫 Penerima: SD Nusantara</strong><br>
+                        Kebutuhan saat ini: Meja Belajar, Kursi, dan Lemari Arsip.
+                    </div>
+                    
+                    <div class="item-checklist">
+                        <label class="item-checkbox">
+                            <input type="checkbox" onchange="toggleQty(this)"> 
+                            <span>Meja Belajar (Qty: <input type="number" min="1" value="1" class="qty-input" onclick="event.stopPropagation()" disabled style="width: 60px;">)</span>
+                        </label>
+
+                        <label class="item-checkbox">
+                            <input type="checkbox" onchange="toggleQty(this)">
+                            <span>Kursi Siswa (Qty: <input type="number" min="1" value="1" class="qty-input" onclick="event.stopPropagation()" disabled style="width: 60px;">)</span>
+                        </label>
+
+                        <label class="item-checkbox">
+                            <input type="checkbox" onchange="toggleQty(this)">
+                            <span>Lemari Arsip (Qty: <input type="number" min="1" value="1" class="qty-input" onclick="event.stopPropagation()" disabled style="width: 60px;">)</span>
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Metode Pengiriman</label>
+                        <select id="shipping-method">
+                            <option value="sendiri">Saya antar sendiri ke sekolah</option>
+                            <option value="kurir">Saya kirim via Ekspedisi (JNE/GoSend/dll)</option>
+                            <option value="jemput">Request penjemputan (Khusus barang besar)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Catatan (Opsional)</label>
+                        <textarea placeholder="Pesan untuk sekolah..."></textarea>
+                    </div>
+                </div>
+
+                <div id="uang-form" style="display: none;">
+                    <h2>Masukkan Nominal Donasi</h2>
+                    
+                    <div class="suggestion-amounts">
+                        <button onclick="setAmount(50000)" class="amount-btn">Rp 50K</button>
+                        <button onclick="setAmount(100000)" class="amount-btn">Rp 100K</button>
+                        <button onclick="setAmount(250000)" class="amount-btn">Rp 250K</button>
+                        <button onclick="setAmount(500000)" class="amount-btn">Rp 500K</button>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Nominal Lain (Rp)</label>
+                        <input type="number" id="donation-amount" placeholder="Contoh: 100000" style="font-size: 18px; font-weight: bold;">
+                    </div>
+
+                    <h3>Pilih Metode Pembayaran</h3>
+                    <div class="form-group">
+                        <select id="payment-method" onchange="showPaymentDetail()">
+                            <option value="">-- Pilih Metode --</option>
+                            <option value="qris">QRIS (GoPay/OVO/Dana/ShopeePay)</option>
+                            <option value="bca">Transfer BCA (Virtual Account)</option>
+                            <option value="mandiri">Transfer Mandiri (Virtual Account)</option>
+                            <option value="bni">Transfer BNI (Virtual Account)</option>
+                        </select>
+                    </div>
+
+                    <div id="detail-qris" class="payment-detail-box">
+                        <div style="text-align: center;">
+                            <p style="margin-bottom: 15px; font-weight: 500;">Scan QR code di bawah ini:</p>
+                            <div class="qr-container">
+                                <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=ScholifyDonationReference123" alt="QRIS Scholify">
+                                <p style="font-weight: bold; margin-top: 10px; font-size: 12px; color: #666;">NMID: ID10200300400</p>
+                            </div>
+                            <p style="margin-top: 10px; font-size: 14px;">Mendukung semua E-Wallet</p>
+                        </div>
+                    </div>
+
+                    <div id="detail-va" class="payment-detail-box">
+                        <p style="font-weight: 500;">Nomor Virtual Account:</p>
+                        <div class="va-number" id="va-text">88000 812 3456 7890</div>
+                        <div style="text-align: right;">
+                            <button class="copy-btn" onclick="alert('Nomor VA berhasil disalin!')">Salin Nomor</button>
+                        </div>
+                        
+                        <div style="background: white; padding: 15px; border-radius: 8px; margin-top: 15px;">
+                            <strong>Cara Pembayaran:</strong>
+                            <ul style="margin-top: 5px; font-size: 13px; color: #666; padding-left: 20px;">
+                                <li>Buka Mobile Banking Anda</li>
+                                <li>Pilih menu <strong>Virtual Account</strong></li>
+                                <li>Masukkan nomor di atas</li>
+                                <li>Nominal akan terdeteksi otomatis</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display: flex; gap: 15px; margin-top: 30px;">
+                    <button class="btn-secondary" onclick="prevStep(1)">← Kembali</button>
+                    <button class="btn-cta" onclick="processDonation()">Konfirmasi & Selesai</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-bottom">
+            <p>&copy; 2025 Scholify. Semua hak cipta dilindungi.</p>
+        </div>
+    </footer>
+
+    <script>
+        let selectedType = null;
+
+        // LOGIC PENGUNCI TIPE (Revisi Baru)
+        window.addEventListener('DOMContentLoaded', () => {
+            const params = new URLSearchParams(window.location.search);
+            const urlType = params.get('type');
+            
+            const cardBarang = document.getElementById('card-barang');
+            const cardUang = document.getElementById('card-uang');
+            const container = document.getElementById('type-container');
+
+            if (urlType) {
+                if (urlType === 'uang') {
+                    // Pilih Uang
+                    selectType('uang', cardUang);
+                    // Sembunyikan Barang & Ubah Layout jadi 1 Kolom
+                    cardBarang.style.display = 'none';
+                    container.style.gridTemplateColumns = '1fr';
+                } else {
+                    // Pilih Barang
+                    selectType('barang', cardBarang);
+                    // Sembunyikan Uang & Ubah Layout jadi 1 Kolom
+                    cardUang.style.display = 'none';
+                    container.style.gridTemplateColumns = '1fr';
+                }
+            } else {
+                // Default: Barang (jika tidak ada parameter)
+                selectType('barang', cardBarang);
+            }
+        });
+
+        function selectType(type, element) {
+            selectedType = type;
+            document.querySelectorAll('.type-card').forEach(c => c.classList.remove('selected'));
+            element.classList.add('selected');
+        }
+
+        function nextStep(step) {
+            if (!selectedType) {
+                alert('Silakan pilih jenis donasi terlebih dahulu (Barang atau Uang).');
+                return;
+            }
+            
+            document.querySelectorAll('.donation-step').forEach(s => s.classList.remove('active'));
+            document.getElementById('step-2').classList.add('active');
+            document.querySelector('.step[data-step="2"]').classList.add('active');
+
+            if (selectedType === 'barang') {
+                document.getElementById('barang-form').style.display = 'block';
+                document.getElementById('uang-form').style.display = 'none';
+            } else {
+                document.getElementById('barang-form').style.display = 'none';
+                document.getElementById('uang-form').style.display = 'block';
+            }
+        }
+
+        function prevStep(step) {
+            document.getElementById('step-2').classList.remove('active');
+            document.getElementById('step-1').classList.add('active');
+            document.querySelector('.step[data-step="2"]').classList.remove('active');
+        }
+
+        function toggleQty(checkbox) {
+            const input = checkbox.parentElement.querySelector('.qty-input');
+            input.disabled = !checkbox.checked;
+            if (!checkbox.checked) input.value = 1;
+        }
+
+        function setAmount(val) {
+            document.getElementById('donation-amount').value = val;
+        }
+
+        function showPaymentDetail() {
+            const method = document.getElementById('payment-method').value;
+            document.getElementById('detail-qris').style.display = 'none';
+            document.getElementById('detail-va').style.display = 'none';
+
+            if (method === 'qris') {
+                document.getElementById('detail-qris').style.display = 'block';
+            } else if (['bca', 'mandiri', 'bni'].includes(method)) {
+                document.getElementById('detail-va').style.display = 'block';
+                let prefix = '88000';
+                if (method === 'mandiri') prefix = '88908';
+                if (method === 'bni') prefix = '98812';
+                document.getElementById('va-text').innerText = `${prefix} 812 3456 7890`;
+            }
+        }
+
+        function processDonation() {
+            const data = {
+                type: selectedType,
+                date: new Date().toLocaleDateString('id-ID', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }),
+                id: 'INV-' + Math.floor(100000 + Math.random() * 900000)
+            };
+
+            if (selectedType === 'uang') {
+                data.amount = document.getElementById('donation-amount').value;
+                data.method = document.getElementById('payment-method').value;
+                
+                if (!data.amount || data.amount < 10000) {
+                    alert('Mohon masukkan nominal valid (Min Rp 10.000)');
+                    return;
+                }
+                if (!data.method) {
+                    alert('Mohon pilih metode pembayaran.');
+                    return;
+                }
+            } else {
+                const checkedItems = document.querySelectorAll('.item-checkbox input[type="checkbox"]:checked');
+                if (checkedItems.length === 0) {
+                    alert('Pilih minimal satu barang untuk didonasikan.');
+                    return;
+                }
+                data.items = `${checkedItems.length} Jenis Barang (Meja/Kursi)`;
+                data.shipment = document.getElementById('shipping-method').value;
+            }
+
+            localStorage.setItem('lastDonation', JSON.stringify(data));
+            window.location.href = 'success.html';
+        }
+    </script>
+</body>
+</html>

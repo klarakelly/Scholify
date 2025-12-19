@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scholify - Platform Donasi untuk Pendidikan Indonesia</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <img src="../Assets/gambar only.png" alt="Scholify Logo" class="logo-img">
+                <span class="logo-text">Scholify</span>
+            </a>
+            
+            <nav class="nav-menu">
+                <a href="fundraisers.html" class="nav-link">Donasi</a>
+                <a href="login-institusi.html" class="nav-link">Galang Dana</a>
+                <a href="about.html" class="nav-link">About Us</a>
+            </nav>
+
+            <div class="header-actions">
+                <div class="search-container">
+                    <input type="text" placeholder="Cari sekolah..." class="search-input">
+                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </div>
+                <button class="btn-primary" onclick="window.location.href='login.html'">Masuk</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Ubah Masa Depan Pendidikan Indonesia</h1>
+            <p class="hero-subtitle">Bantu sekolah-sekolah di seluruh Indonesia mendapatkan fasilitas dan infrastruktur yang mereka butuhkan</p>
+            
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <span class="stat-number">1000+</span>
+                    <span class="stat-label">Sekolah Terbantu</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">50K+</span>
+                    <span class="stat-label">Donatur Aktif</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">Rp 5B+</span>
+                    <span class="stat-label">Dana Terkumpul</span>
+                </div>
+            </div>
+
+            <button class="btn-cta" onclick="window.location.href='fundraisers.html'">Mulai Donasi Sekarang</button>
+        </div>
+        <div class="hero-image">
+            <img src="../Assets/siswa belajar.jpg" alt="Siswa belajar">
+        </div>
+    </section>
+
+    <section class="campaigns-highlight">
+        <div class="section-header">
+            <h2>Kampanye Aktif yang Membutuhkan Bantuan</h2>
+            <a href="fundraisers.html" class="nav-link">Lihat Semua →</a>
+        </div>
+
+        <div class="campaigns-carousel">
+            <div class="campaign-card">
+                <div class="campaign-image">
+                    <img src="https://images.unsplash.com/photo-1629484847339-6bd1809a2d0a?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3" alt="SD Nusantara">
+                    <div class="campaign-overlay">
+                        <span class="view-campaign-btn" onclick="event.stopImmediatePropagation(); window.location.href='campaign-detail-1.html'">Lihat Detail</span>
+                    </div>
+                </div>
+                <div class="campaign-info">
+                    <div class="campaign-tags">
+                        <span class="tag tag-level">SD</span>
+                        <span class="tag tag-category">Infrastruktur</span>
+                    </div>
+                    <h3 class="campaign-title">Perbaikan Ruang Kelas SD Nusantara</h3>
+                    <p class="campaign-school">SD Nusantara • Jakarta</p>
+                    
+                    <div class="campaign-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 65%"></div>
+                        </div>
+                        <span class="progress-text">Rp 65.000.000 dari Rp 100.000.000</span>
+                    </div>
+                    
+                    <div class="campaign-items">
+                        <span class="item-badge">8 meja</span>
+                        <span class="item-badge">10 kursi</span>
+                    </div>
+
+                    <button class="btn-donate" onclick="window.location.href='donation-process.html'">Donasi Sekarang</button>
+                </div>
+            </div>
+
+            <div class="campaign-card">
+                <div class="campaign-image">
+                    <img src="https://sman1baturraden.sch.id/wp-content/uploads/2023/08/Perpus-1-scaled-1.jpg" alt="SMP Harapan">
+                    <div class="campaign-overlay">
+                        <span class="view-campaign-btn" onclick="event.stopImmediatePropagation(); window.location.href='campaign-detail-2.html'">Lihat Detail</span>
+                    </div>
+                </div>
+                <div class="campaign-info">
+                    <div class="campaign-tags">
+                        <span class="tag tag-level">SMP</span>
+                        <span class="tag tag-category">Alat Tulis</span>
+                    </div>
+                    <h3 class="campaign-title">Perpustakaan Baru SMP Harapan</h3>
+                    <p class="campaign-school">SMP Harapan • Bandung</p>
+                    
+                    <div class="campaign-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 42%"></div>
+                        </div>
+                        <span class="progress-text">Rp 42.000.000 dari Rp 100.000.000</span>
+                    </div>
+                    
+                    <div class="campaign-items">
+                        <span class="item-badge">500 buku</span>
+                        <span class="item-badge">5 lemari</span>
+                    </div>
+
+                    <button class="btn-donate" onclick="window.location.href='donation-process.html'">Donasi Sekarang</button>
+                </div>
+            </div>
+
+            <div class="campaign-card">
+                <div class="campaign-image">
+                    <img src="https://www.sman5jember.sch.id/media_library/posts/page-image-1509350310604.jpg" alt="SMK Teknologi">
+                    <div class="campaign-overlay">
+                        <span class="view-campaign-btn" onclick="event.stopImmediatePropagation(); window.location.href='campaign-detail-3.html'">Lihat Detail</span>
+                    </div>
+                </div>
+                <div class="campaign-info">
+                    <div class="campaign-tags">
+                        <span class="tag tag-level">SMK</span>
+                        <span class="tag tag-category">Elektronik</span>
+                    </div>
+                    <h3 class="campaign-title">Lab Komputer SMK Teknologi</h3>
+                    <p class="campaign-school">SMK Teknologi • Surabaya</p>
+                    
+                    <div class="campaign-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 78%"></div>
+                        </div>
+                        <span class="progress-text">Rp 78.000.000 dari Rp 100.000.000</span>
+                    </div>
+                    
+                    <div class="campaign-items">
+                        <span class="item-badge">15 laptop</span>
+                        <span class="item-badge">1 projector</span>
+                    </div>
+
+                    <button class="btn-donate" onclick="window.location.href='donation-process.html'">Donasi Sekarang</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works">
+        <h2 class="section-title">Cara Kerja Scholify</h2>
+        
+        <div class="steps-container">
+            <div class="step-item">
+                <div class="step-number">1</div>
+                <h3 class="step-title">Pilih Sekolah</h3>
+                <p class="step-description">Jelajahi berbagai sekolah di Indonesia yang membutuhkan bantuan</p>
+            </div>
+
+            <div class="step-item">
+                <div class="step-number">2</div>
+                <h3 class="step-title">Pilih Donasi</h3>
+                <p class="step-description">Donasi barang atau uang sesuai kebutuhan sekolah</p>
+            </div>
+
+            <div class="step-item">
+                <div class="step-number">3</div>
+                <h3 class="step-title">Kirim & Lihat Dampak</h3>
+                <p class="step-description">Lihat bagaimana donasi Anda membantu melalui feed sekolah</p>
+            </div>
+
+            <div class="step-item">
+                <div class="step-number">4</div>
+                <h3 class="step-title">Naik Level</h3>
+                <p class="step-description">Raih badge donatur dan jadilah bagian dari komunitas Scholify</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <h2 class="section-title">Cerita Nyata dari Komunitas Kami</h2>
+        
+        <div class="testimonials-container">
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <p class="testimonial-text">"Berkat Scholify, kami bisa membangun ruang kelas baru untuk 100+ siswa."</p>
+                </div>
+                <div class="testimonial-author">
+                    <img src="../Assets/ibu 1.jpg" alt="Kepala Sekolah">
+                    <div class="author-info">
+                        <p class="author-name">Ibu Siti Rahman</p>
+                        <p class="author-role">Kepala SD Nusantara</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <p class="testimonial-text">"Platform ini sangat mudah digunakan. Saya sudah membantu 5 sekolah berbeda!"</p>
+                </div>
+                <div class="testimonial-author">
+                    <img src="../Assets/bapak 1.jpg" alt="Donatur">
+                    <div class="author-info">
+                        <p class="author-name">Budi Santoso</p>
+                        <p class="author-role">Donatur Aktif</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card">
+                <div class="testimonial-content">
+                    <p class="testimonial-text">"Transparansi adalah kunci. Saya bisa lihat kemana dana ini pergi."</p>
+                </div>
+                <div class="testimonial-author">
+                    <img src="../Assets/ibu 2.jpg" alt="Sukarelawan">
+                    <div class="author-info">
+                        <p class="author-name">Ibu Rini Wijaya</p>
+                        <p class="author-role">Koordinator Program</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="cta-content">
+            <h2 class="cta-title">Siap Membuat Perbedaan?</h2>
+            <p class="cta-subtitle">Bergabunglah dengan ribuan donatur yang telah membantu membangun masa depan pendidikan Indonesia</p>
+            <button class="btn-cta-large" onclick="window.location.href='fundraisers.html'">Mulai Donasi Hari Ini</button>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4 class="footer-title">Scholify</h4>
+                <p class="footer-description">Platform donasi terpercaya untuk pendidikan Indonesia</p>
+                <div class="social-links">
+                    <a href="#" class="social-link">Facebook</a>
+                    <a href="#" class="social-link">Instagram</a>
+                    <a href="#" class="social-link">Twitter</a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h4 class="footer-title">Donasi</h4>
+                <ul class="footer-links">
+                    <li><a href="fundraisers.html">Cari Sekolah</a></li>
+                    <li><a href="#">Donasi Barang</a></li>
+                    <li><a href="#">Donasi Uang</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4 class="footer-title">Institusi</h4>
+                <ul class="footer-links">
+                    <li><a href="login-institusi.html">Daftar Sekolah</a></li>
+                    <li><a href="#">Panduan</a></li>
+                    <li><a href="#">Hubungi Kami</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4 class="footer-title">Bantuan</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Pusat Bantuan</a></li>
+                    <li><a href="#">Privasi</a></li>
+                    <li><a href="#">Syarat & Ketentuan</a></li>
+                    <li><a href="#">Hubungi Support</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Scholify. Semua hak cipta dilindungi.</p>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>

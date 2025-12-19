@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pengaturan - Scholify</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <img src="../Assets/gambar only.png" alt="Scholify Logo" class="logo-img">
+                <span class="logo-text">Scholify</span>
+            </a>
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link">← Kembali</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="settings-section">
+        <div class="settings-container">
+            <h1>Pengaturan</h1>
+
+            <div class="settings-tabs">
+                <button class="settings-tab active" data-tab="general">Umum</button>
+                <button class="settings-tab" data-tab="security">Keamanan</button>
+                <button class="settings-tab" data-tab="address">Alamat</button>
+                <button class="settings-tab" data-tab="privacy">Privasi</button>
+            </div>
+
+            <!-- General Tab -->
+            <div class="settings-card settings-tab-content active" id="general">
+                <h2>Informasi Profil</h2>
+                <div class="form-group">
+                    <label>Nama Lengkap</label>
+                    <input type="text" id="profile-name" value="Budi Santoso" placeholder="Nama anda">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="profile-email" value="budi@example.com" placeholder="Email anda">
+                </div>
+                <div class="form-group">
+                    <label>Nomor Telepon</label>
+                    <input type="tel" id="profile-phone" value="+62 812-3456-7890" placeholder="Nomor telepon">
+                </div>
+                <div class="form-group">
+                    <label>Biodata</label>
+                    <textarea placeholder="Ceritakan tentang Anda...">Saya adalah seorang profesional muda yang peduli pendidikan.</textarea>
+                </div>
+                <button class="btn-cta" id="btn-save-profile">Simpan Perubahan</button>
+            </div>
+
+            <!-- Security Tab -->
+            <div class="settings-card settings-tab-content" id="security">
+                <h2>Keamanan Akun</h2>
+                <div class="form-group">
+                    <label>Password Saat Ini</label>
+                    <input type="password" id="current-password" placeholder="••••••••">
+                </div>
+                <div class="form-group">
+                    <label>Password Baru</label>
+                    <input type="password" id="new-password" placeholder="••••••••">
+                </div>
+                <div class="form-group">
+                    <label>Konfirmasi Password</label>
+                    <input type="password" id="confirm-password" placeholder="••••••••">
+                </div>
+                <button class="btn-cta" id="btn-change-pass">Ubah Password</button>
+
+                    <hr style="margin: 30px 0; border: none; border-top: 1px solid #e8e0d0;">
+
+                    <h3>Autentikasi Dua Faktor</h3>
+                    <p style="color: #666; margin-bottom: 15px;">Tingkatkan keamanan akun Anda dengan autentikasi dua faktor.</p>
+                    <button class="btn-secondary">Aktifkan 2FA</button>
+                </div>
+            </div>
+
+            <!-- Address Tab -->
+            <div class="settings-tab-content" id="address">
+                <div class="settings-card">
+                    <h2>Alamat Penyimpanan</h2>
+                    <p style="margin-bottom: 20px; color: #666;">Alamat ini akan digunakan sebagai referensi pengiriman barang donasi.</p>
+
+                    <div class="address-list">
+                        <div class="address-item selected">
+                            <div class="address-radio">
+                                <input type="radio" name="address" checked>
+                            </div>
+                            <div class="address-info">
+                                <h4>Rumah</h4>
+                                <p>Jl. Kemang Utara No. 45, Jakarta Selatan 12560</p>
+                            </div>
+                            <div class="address-actions">
+                                <button class="btn-text">Edit</button>
+                                <button class="btn-text">Hapus</button>
+                            </div>
+                        </div>
+
+                        <div class="address-item">
+                            <div class="address-radio">
+                                <input type="radio" name="address">
+                            </div>
+                            <div class="address-info">
+                                <h4>Kantor</h4>
+                                <p>Jl. Sudirman No. 123, Jakarta Pusat 10220</p>
+                            </div>
+                            <div class="address-actions">
+                                <button class="btn-text">Edit</button>
+                                <button class="btn-text">Hapus</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn-secondary" style="margin-top: 20px;">+ Tambah Alamat Baru</button>
+                </div>
+            </div>
+
+            <!-- Privacy Tab -->
+            <div class="settings-tab-content" id="privacy">
+                <div class="settings-card">
+                    <h2>Pengaturan Privasi</h2>
+                    
+                    <div class="privacy-setting">
+                        <div>
+                            <h4>Profil Publik</h4>
+                            <p>Izinkan orang lain melihat profil dan riwayat donasi Anda</p>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="privacy-setting">
+                        <div>
+                            <h4>Tampilkan Nama Saat Donasi</h4>
+                            <p>Nama Anda akan ditampilkan di feed sekolah sebagai donatur</p>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="privacy-setting">
+                        <div>
+                            <h4>Email Marketing</h4>
+                            <p>Terima update kampanye dan rekomendasi sekolah baru</p>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="privacy-setting">
+                        <div>
+                            <h4>Notifikasi Push</h4>
+                            <p>Aktifkan notifikasi untuk update penting</p>
+                        </div>
+                        <label class="toggle-switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <hr style="margin: 30px 0; border: none; border-top: 1px solid #e8e0d0;">
+
+                    <button class="btn-danger">Hapus Akun</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-bottom">
+            <p>&copy; 2025 Scholify. Semua hak cipta dilindungi.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Tab switching
+        document.querySelectorAll('.settings-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabName = tab.dataset.tab;
+                
+                // Remove 'active' from all buttons and contents
+                document.querySelectorAll('.settings-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.settings-tab-content').forEach(c => c.classList.remove('active'));
+                
+                // Add 'active' to clicked button and target content
+                tab.classList.add('active');
+                document.getElementById(tabName).classList.add('active');
+            });
+        });
+
+        // Address selection
+        const addressItems = document.querySelectorAll('.address-item');
+
+            addressItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    // Prevent error if they click the "Edit" or "Hapus" buttons
+                    if (e.target.tagName === 'BUTTON') return;
+
+                    // 1. Find the radio button inside THIS box
+                    const radio = this.querySelector('input[type="radio"]');
+                    
+                    // 2. Check the radio button
+                    radio.checked = true;
+
+                    // 3. Update the Visuals (Orange border/background)
+                    // Remove 'selected' from everyone
+                    addressItems.forEach(el => el.classList.remove('selected'));
+                    // Add 'selected' to THIS box
+                    this.classList.add('selected');
+                });
+            });
+
+        // Profile Save Validation
+        document.getElementById('btn-save-profile').addEventListener('click', function() {
+            const name = document.getElementById('profile-name').value;
+            const email = document.getElementById('profile-email').value;
+            const phone = document.getElementById('profile-phone').value;
+
+            // A. Validate Name (Must actally contain letters, no numbers)
+            // Regex: Only Allows a-z, A-Z, and spaces.
+            const namePattern = /^[a-zA-Z\s]+$/;
+            if (!namePattern.test(name) || name.trim() === "") {
+                alert("Nama tidak valid! Nama hanya boleh berisi huruf dan tidak boleh angka.");
+                return;
+            }
+
+            // B. Validate Email (Must look like an email)
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                alert("Format email salah! Mohon gunakan format yang benar (contoh: budi@gmail.com).");
+                return;
+            }
+
+            // C. Validate Phone (Must be numbers/symbols, NO letters)
+            // Regex: Allows digits, spaces, dashes (-), and plus (+). No letters.
+            const phonePattern = /^[0-9+\-\s]+$/;
+            // Also check if it has at least 10 digits to be a real number
+            const digitCount = (phone.match(/\d/g) || []).length;
+
+            if (!phonePattern.test(phone) || digitCount < 10) {
+                alert("Nomor telepon tidak valid! Mohon masukkan nomor yang benar (Minimal 10 digit).");
+                return;
+            }
+
+            // Success
+            alert("Profil berhasil diperbarui!");
+        });
+
+        // Change Password Validation
+        const btnPass = document.getElementById('btn-change-pass'); // 1. Try to find it
+        if (btnPass) {
+            btnPass.addEventListener('click', function() {
+            const currentPass = document.getElementById('current-password').value;
+            const newPass = document.getElementById('new-password').value;
+            const confirmPass = document.getElementById('confirm-password').value;
+
+            // A. Check if Current Password is empty (NEW CHECK)
+            if (currentPass === "") {
+                alert("Mohon masukkan password saat ini untuk verifikasi.");
+                return;
+            }
+
+            // B. Check if empty
+            if (newPass === "") {
+                alert("Mohon masukkan password baru.");
+                return;
+            }
+
+            // C. Check if same as current
+            if (currentPass === newPass) {
+                    alert("Password baru tidak boleh sama dengan password saat ini! Silakan gunakan password yang berbeda.");
+                    return;
+                }
+
+            // D. Check if they match
+            if (newPass !== confirmPass) {
+                alert("Konfirmasi password tidak cocok! Mohon periksa kembali.");
+                return;
+            }
+
+            // E. Check length
+            if (newPass.length < 8) {
+                alert("Password terlalu pendek! Minimal 8 karakter.");
+                return;
+            }
+
+            // Success
+            alert("Password berhasil diubah! Silakan login ulang nanti.");
+            // Clear the boxes
+            document.getElementById('current-password').value = "";
+            document.getElementById('new-password').value = "";
+            document.getElementById('confirm-password').value = "";
+        });
+      }
+    </script>
+</body>
+</html>

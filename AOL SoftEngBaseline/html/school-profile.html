@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Sekolah - Scholify</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <img src="../Assets/gambar only.png" alt="Scholify Logo" class="logo-img">
+                <span class="logo-text">Scholify</span>
+            </a>
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link">← Kembali</a>
+                <a href="fundraisers.html" class="nav-link">Donasi</a>
+                <a href="about.html" class="nav-link">About Us</a>
+            </nav>
+            <div class="header-actions">
+                <button class="btn-primary" onclick="window.location.href='login.html'">Masuk</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="school-profile-section">
+        <div class="school-header-bg">
+            <img src="../Assets/banner sekolah 1.jpeg" alt="School Banner">
+        </div>
+
+        <div class="school-profile-container">
+            <!-- Profile Info -->
+            <div class="school-info-card">
+                <div class="school-avatar-section">
+                    <img src="../Assets/logo sekolah 1.png" alt="School Logo" class="school-avatar">
+                    <div class="school-header-info">
+                        <h1 class="school-name">SD Nusantara</h1>
+                        <p class="school-location">📍 Jl. Merdeka No. 45, Jakarta 12345</p>
+                        <span class="verified-badge">✓ Terverifikasi</span>
+                    </div>
+                </div>
+
+                <div class="school-bio">
+                    <p>SD Nusantara adalah sekolah dasar yang melayani 250+ siswa dari keluarga kurang mampu di Jakarta. Sejak berdiri tahun 1995, kami berkomitmen memberikan pendidikan berkualitas meski dengan keterbatasan fasilitas.</p>
+                </div>
+            </div>
+
+            <!-- Statistik -->
+            <div class="school-stats">
+                <div class="stat-card">
+                    <h3 class="stat-value">Rp 350M+</h3>
+                    <p class="stat-label">Total Donasi</p>
+                </div>
+                <div class="stat-card">
+                    <h3 class="stat-value">45</h3>
+                    <p class="stat-label">Kampanye Selesai</p>
+                </div>
+                <div class="stat-card">
+                    <h3 class="stat-value">2500+</h3>
+                    <p class="stat-label">Donatur</p>
+                </div>
+                <div class="stat-card">
+                    <h3 class="stat-value">250+</h3>
+                    <p class="stat-label">Siswa Terbantu</p>
+                </div>
+            </div>
+
+            <!-- Tabs -->
+            <div class="school-tabs">
+                <button class="tab-button active" data-tab="campaigns">Kampanye Aktif</button>
+                <button class="tab-button" data-tab="feed">Feed & Bukti</button>
+                <button class="tab-button" data-tab="statistics">Statistik Donasi</button>
+            </div>
+
+            <!-- Tab Content -->
+            <div class="tab-content">
+                <!-- Campaigns Tab -->
+                <div class="tab-pane active" id="campaigns">
+                    <div class="campaigns-list">
+                        <div class="campaign-item-list">
+                            <h3>Perbaikan Ruang Kelas</h3>
+                            <p>Target: Rp 100.000.000 | Terkumpul: Rp 65.000.000</p>
+                            <div class="progress-bar" style="margin-top: 10px;">
+                                <div class="progress-fill" style="width: 65%"></div>
+                            </div>
+                            <button class="btn-donate" onclick="window.location.href='campaign-detail.html?id=1'" style="margin-top: 10px; width: 100%;">Bantu Kampanye</button>
+                        </div>
+                        <div class="campaign-item-list">
+                            <h3>Perpustakaan Baru</h3>
+                            <p>Target: Rp 80.000.000 | Terkumpul: Rp 45.000.000</p>
+                            <div class="progress-bar" style="margin-top: 10px;">
+                                <div class="progress-fill" style="width: 56%"></div>
+                            </div>
+                            <button class="btn-donate" style="margin-top: 10px; width: 100%;">Bantu Kampanye</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feed Tab -->
+                <div class="tab-pane" id="feed">
+                    <div class="feed-list">
+                        <div class="feed-item">
+                            <img src="../Assets/feed 1.jpg" alt="Feed">
+                            <div class="feed-content">
+                                <h3>Meja-Meja Baru Tiba!</h3>
+                                <p class="feed-date">2 hari lalu</p>
+                                <p>Terima kasih atas donasi 8 meja berkualitas! Siswa kami kini bisa belajar dengan lebih nyaman. Ini adalah hasil kolaborasi luar biasa dari para donatur di Scholify.</p>
+                            </div>
+                        </div>
+
+                        <div class="feed-item">
+                            <img src="../Assets/feed 2.jpg" alt="Feed">
+                            <div class="feed-content">
+                                <h3>Siswa Kami Senang Belajar!</h3>
+                                <p class="feed-date">1 minggu lalu</p>
+                                <p>Dengan fasilitas baru, motivasi belajar siswa meningkat signifikan. Saat ini rata-rata kehadiran siswa mencapai 95%.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Statistics Tab -->
+                <div class="tab-pane" id="statistics">
+                    <div class="statistics-card">
+                        <h3>Breakdown Donasi Berdasarkan Kategori</h3>
+                        <div class="chart-placeholder" style="display: flex; justify-content: center; align-items: center; padding: 20px;">
+                            
+                            <div style="
+                                width: 200px; 
+                                height: 200px; 
+                                border-radius: 50%;
+                                background: conic-gradient(
+                                    #EB9329 0% 45%,   /* Infrastructure: 0 to 45% */
+                                    #F9D5A3 45% 75%,  /* Electronic: 45 + 30 = 75% */
+                                    #F3E5AB 75% 100%  /* Others: Remainder */
+                                );
+                                box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+                            "></div>
+
+                        </div>
+                        <ul class="stats-legend">
+                            <li><span class="legend-color" style="background: #EB9329;"></span> Infrastruktur: 45%</li>
+                            <li><span class="legend-color" style="background: #F9D5A3;"></span> Elektronik: 30%</li>
+                            <li><span class="legend-color" style="background: #F3E5AB;"></span> Lainnya: 25%</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-bottom">
+            <p>&copy; 2025 Scholify. Semua hak cipta dilindungi.</p>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+
+    <script>
+        // Tab switching
+        document.querySelectorAll('.tab-button').forEach(button => {
+            button.addEventListener('click', () => {
+                const tabName = button.dataset.tab;
+                document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
+                document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+                button.classList.add('active');
+                document.getElementById(tabName).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>

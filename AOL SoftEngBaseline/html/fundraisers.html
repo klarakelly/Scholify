@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kampanye Donasi - Scholify</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <style>
+        /* CSS Tambahan */
+        .tag-uang { background: #e3f2fd; color: #0d47a1; }
+        .tag-barang { background: #fff3e0; color: #e65100; }
+        .tag-waktu { background: #fce4ec; color: #c2185b; font-size: 11px; display: flex; align-items: center; gap: 4px; }
+        
+        /* Agar kartu bisa diklik user (UX) */
+        .campaign-card { cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; position: relative; }
+        .campaign-card:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+        
+        /* Tombol di atas kartu */
+        .btn-donate { position: relative; z-index: 2; }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <img src="../Assets/gambar only.png" alt="Scholify Logo" class="logo-img">
+                <span class="logo-text">Scholify</span>
+            </a>
+            
+            <nav class="nav-menu">
+                <a href="fundraisers.html" class="nav-link active">Donasi</a>
+                <a href="login-institusi.html" class="nav-link">Galang Dana</a>
+                <a href="about.html" class="nav-link">About Us</a>
+            </nav>
+
+            <div class="header-actions">
+                <div class="search-container">
+                    <input type="text" placeholder="Cari sekolah..." class="search-input" id="search-fundraisers">
+                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </div>
+                <button class="btn-primary" onclick="window.location.href='login.html'">Masuk</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="filter-section">
+        <div class="filter-container">
+            <h1 class="filter-title">Kampanye yang Membutuhkan Bantuan Anda</h1>
+            
+            <div class="filter-controls">
+                <select class="filter-select" id="level-filter">
+                    <option value="">Semua Jenjang</option>
+                    <option value="TK">TK</option>
+                    <option value="SD">SD</option>
+                    <option value="SMP">SMP</option>
+                    <option value="SMA">SMA</option>
+                    <option value="SMK">SMK</option>
+                </select>
+
+                <select class="filter-select" id="category-filter">
+                    <option value="">Semua Kategori</option>
+                    <option value="Infrastruktur">Infrastruktur</option>
+                    <option value="Alat Tulis">Alat Tulis</option>
+                    <option value="Elektronik">Elektronik</option>
+                    <option value="Perpustakaan">Perpustakaan</option>
+                    <option value="Olahraga">Olahraga</option>
+                </select>
+
+                <select class="filter-select" id="type-filter">
+                    <option value="">Semua Tipe Donasi</option>
+                    <option value="uang">💰 Donasi Uang</option>
+                    <option value="barang">📦 Donasi Barang</option>
+                </select>
+
+                <select class="filter-select" id="sort-filter">
+                    <option value="newest">📅 Terbaru</option>
+                    <option value="oldest">📅 Terlama</option>
+                    <option value="urgent">⏳ Segera Berakhir</option>
+                </select>
+            </div>
+        </div>
+    </section>
+
+    <section class="fundraisers-section">
+        <div class="fundraisers-container">
+            <div class="fundraisers-grid" id="campaigns-grid">
+                </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>Scholify</h4>
+                <p class="footer-description">Platform donasi fasilitas sekolah terpercaya #1 di Indonesia.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link">Facebook</a>
+                    <a href="#" class="social-link">Instagram</a>
+                    <a href="#" class="social-link">Twitter</a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h4>Akses Cepat</h4>
+                <ul class="footer-links">
+                    <li><a href="fundraisers.html">Cari Sekolah</a></li>
+                    <li><a href="login-institusi.html">Daftarkan Sekolah</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>Hubungi Kami</h4>
+                <ul class="footer-links">
+                    <li><a href="#">support@scholify.id</a></li>
+                    <li><a href="#">+62 812-3456-7890</a></li>
+                    <li><a href="#">Jakarta, Indonesia</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Scholify. Semua hak cipta dilindungi.</p>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+    <script>
+        // DATA KAMPANYE DIPERBARUI
+        // Ditambah property 'date' dan 'daysLeft' untuk sorting
+        // Ditambah logika 'target' & 'current' yang fleksibel (bisa rupiah, bisa unit)
+        const campaigns = [
+            { 
+                id: 1, type: 'barang', date: '2025-01-10', daysLeft: 15,
+                title: "Perbaikan Ruang Kelas SD Nusantara", 
+                school: "SD Nusantara", location: "Jakarta", level: "SD", category: "Infrastruktur", 
+                image: "https://images.unsplash.com/photo-1629484847339-6bd1809a2d0a?q=80&w=1170&auto=format&fit=crop", 
+                progress: 65, target: 20, current: 13, // Unit Barang
+                items: ["8 meja", "10 kursi"] 
+            },
+            { 
+                id: 2, type: 'barang', date: '2025-02-01', daysLeft: 45,
+                title: "Perpustakaan Baru SMP Harapan", 
+                school: "SMP Harapan", location: "Bandung", level: "SMP", category: "Perpustakaan", 
+                image: "https://sman1baturraden.sch.id/wp-content/uploads/2023/08/Perpus-1-scaled-1.jpg", 
+                progress: 42, target: 500, current: 210, // Unit Barang
+                items: ["500 buku", "5 lemari"] 
+            },
+            { 
+                id: 3, type: 'uang', date: '2025-01-05', daysLeft: 5,
+                title: "Dana Renovasi Lab Komputer", 
+                school: "SMK Teknologi", location: "Surabaya", level: "SMK", category: "Elektronik", 
+                image: "https://www.sman5jember.sch.id/media_library/posts/page-image-1509350310604.jpg", 
+                progress: 78, target: 100000000, current: 78000000, // Rupiah
+                items: ["Renovasi Ruangan", "Instalasi Listrik"] 
+            },
+            { 
+                id: 4, type: 'uang', date: '2025-01-20', daysLeft: 25,
+                title: "Bantuan Dana Kantin Sehat", 
+                school: "SMA Unggul", location: "Yogyakarta", level: "SMA", category: "Infrastruktur", 
+                image: "https://i0.wp.com/smk1karangdadap.sch.id/wp-content/uploads/2022/10/kantin-1.jpeg?fit=1280%2C720&ssl=1", 
+                progress: 55, target: 50000000, current: 27500000, // Rupiah
+                items: ["Material Bangunan", "Upah Tukang"] 
+            },
+            { 
+                id: 5, type: 'barang', date: '2025-01-15', daysLeft: 10,
+                title: "Peralatan Olahraga TK Ceria", 
+                school: "TK Ceria", location: "Medan", level: "TK", category: "Olahraga", 
+                image: "https://tkcikalceria.wordpress.com/wp-content/uploads/2015/11/p_20150324_072608.jpg",
+                progress: 30, target: 30, current: 9, // Unit Barang
+                items: ["Ayunan", "Perosotan"] 
+            },
+            { 
+                id: 6, type: 'uang', date: '2025-02-10', daysLeft: 60,
+                title: "Beasiswa Siswa Berprestasi", 
+                school: "SD Maju", location: "Jakarta", level: "SD", category: "Alat Tulis", 
+                image: "https://www.tanjungpinangkota.go.id/images/berita/big/BELAJAR%20%20RES.jpg", 
+                progress: 85, target: 20000000, current: 17000000, // Rupiah
+                items: ["SPP Siswa", "Seragam"] 
+            }
+        ];
+
+        // Navigasi ke Detail (Script Aman)
+        function goToDetail(id) {
+            window.location.href = `campaign-detail-${id}.html`;
+        }
+
+        // Navigasi ke Donasi (Script Aman - Mencegah tabrakan klik)
+        function goToDonation(event, type) {
+            event.stopPropagation(); // Mencegah klik kartu terpanggil
+            window.location.href = `donation-process.html?type=${type}`;
+        }
+
+        function renderCampaigns(data = campaigns) {
+            const grid = document.getElementById('campaigns-grid');
+            grid.innerHTML = '';
+
+            if (data.length === 0) {
+                grid.innerHTML = '<p style="grid-column: 1/-1; text-align: center; padding: 40px; color: #666;">Tidak ada kampanye ditemukan.</p>';
+                return;
+            }
+
+            data.forEach(campaign => {
+                const isUang = campaign.type === 'uang';
+                const typeLabel = isUang ? '💰 Donasi Uang' : '📦 Donasi Barang';
+                const typeClass = isUang ? 'tag-uang' : 'tag-barang';
+                
+                // LOGIC PROGRESS TEXT (Request Klien)
+                // Jika Uang -> Tampilkan Rupiah
+                // Jika Barang -> Tampilkan Unit (misal: 13 / 20 Barang)
+                let progressText = '';
+                if (isUang) {
+                    progressText = `Rp ${(campaign.current / 1000000).toFixed(1)}jt terkumpul`;
+                } else {
+                    progressText = `${campaign.current} / ${campaign.target} Unit Terkumpul`;
+                }
+
+                const card = document.createElement('div');
+                card.className = 'campaign-card';
+                // PANGGIL FUNGSI KLIK
+                card.setAttribute('onclick', `goToDetail(${campaign.id})`);
+                
+                card.innerHTML = `
+                    <div class="campaign-image">
+                        <img src="${campaign.image}" alt="${campaign.title}">
+                        <div class="campaign-overlay">
+                            <span class="view-campaign-btn">Lihat Detail</span>
+                        </div>
+                    </div>
+                    <div class="campaign-info">
+                        <div class="campaign-tags">
+                            <span class="tag tag-level">${campaign.level}</span>
+                            <span class="tag ${typeClass}">${typeLabel}</span>
+                            <span class="tag tag-waktu">⏳ ${campaign.daysLeft} Hari</span>
+                        </div>
+                        <h3 class="campaign-title">${campaign.title}</h3>
+                        <p class="campaign-school">${campaign.school} • ${campaign.location}</p>
+                        
+                        <div class="campaign-progress">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: ${campaign.progress}%"></div>
+                            </div>
+                            <span class="progress-text">${progressText}</span>
+                        </div>
+                        
+                        <div class="campaign-items">
+                            ${campaign.items.map(item => `<span class="item-badge">${item}</span>`).join('')}
+                        </div>
+
+                        <button class="btn-donate" onclick="goToDonation(event, '${campaign.type}')">Donasi Sekarang</button>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Logic Filter & Sorting
+        function updateFilters() {
+            const level = document.getElementById('level-filter').value;
+            const category = document.getElementById('category-filter').value;
+            const type = document.getElementById('type-filter').value;
+            const sort = document.getElementById('sort-filter').value; // Ambil nilai sorting
+
+            let filtered = campaigns.filter(campaign => {
+                if (level && campaign.level !== level) return false;
+                if (category && campaign.category !== category) return false;
+                if (type && campaign.type !== type) return false; 
+                return true;
+            });
+
+            // LOGIC SORTING (Request Klien)
+            if (sort === 'newest') {
+                filtered.sort((a, b) => new Date(b.date) - new Date(a.date));
+            } else if (sort === 'oldest') {
+                filtered.sort((a, b) => new Date(a.date) - new Date(b.date));
+            } else if (sort === 'urgent') {
+                filtered.sort((a, b) => a.daysLeft - b.daysLeft);
+            }
+
+            renderCampaigns(filtered);
+        }
+
+        // Search Logic
+        window.addEventListener('DOMContentLoaded', () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const searchParam = urlParams.get('search');
+            if (searchParam) {
+                document.getElementById('search-fundraisers').value = searchParam;
+                const term = searchParam.toLowerCase();
+                const filtered = campaigns.filter(c => c.title.toLowerCase().includes(term));
+                renderCampaigns(filtered);
+            } else {
+                renderCampaigns();
+            }
+        });
+
+        document.getElementById('search-fundraisers').addEventListener('keyup', (e) => {
+            const term = e.target.value.toLowerCase();
+            const filtered = campaigns.filter(c => c.title.toLowerCase().includes(term));
+            renderCampaigns(filtered);
+        });
+
+        // Pasang Event Listener
+        document.getElementById('level-filter').addEventListener('change', updateFilters);
+        document.getElementById('category-filter').addEventListener('change', updateFilters);
+        document.getElementById('type-filter').addEventListener('change', updateFilters);
+        document.getElementById('sort-filter').addEventListener('change', updateFilters);
+    </script>
+</body>
+</html>

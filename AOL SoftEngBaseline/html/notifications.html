@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notifikasi - Scholify</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <img src="../Assets/gambar only.png" alt="Scholify Logo" class="logo-img">
+                <span class="logo-text">Scholify</span>
+            </a>
+            <nav class="nav-menu">
+                <a href="fundraisers.html" class="nav-link">Donasi</a>
+            </nav>
+            <div class="header-actions">
+                <button class="btn-secondary" onclick="window.location.href='user-profile.html'">Profil</button>
+            </div>
+        </div>
+    </header>
+
+    <section class="notifications-section">
+        <div class="notifications-container">
+            <h1>Notifikasi</h1>
+
+            <div class="notifications-list">
+                <div class="notification-card unread">
+                    <div class="notification-icon">📦</div>
+                    <div class="notification-content">
+                        <h3>Barang Anda Diterima!</h3>
+                        <p>SD Nusantara telah menerima 5 meja yang Anda donasikan. Terima kasih!</p>
+                        <span class="notification-time">1 jam lalu</span>
+                    </div>
+                    <button class="btn-text" onclick="window.location.href='school-profile.html?id=1'">Lihat Bukti</button>
+                </div>
+
+                <div class="notification-card unread">
+                    <div class="notification-icon">⭐</div>
+                    <div class="notification-content">
+                        <h3>Tier Anda Naik ke Gold!</h3>
+                        <p>Selamat! Anda telah mencapai status Gold Member karena telah menyumbang Rp 2.000.000</p>
+                        <span class="notification-time">2 hari lalu</span>
+                    </div>
+                </div>
+
+                <div class="notification-card">
+                    <div class="notification-icon">📝</div>
+                    <div class="notification-content">
+                        <h3>Ingatkan: Upload Resi Pengiriman</h3>
+                        <p>Anda belum mengupload resi pengiriman untuk donasi ke SMP Harapan. Silakan upload sekarang.</p>
+                        <span class="notification-time">3 hari lalu</span>
+                    </div>
+                    <button class="btn-text">Upload Resi</button>
+                </div>
+
+                <div class="notification-card">
+                    <div class="notification-icon">✅</div>
+                    <div class="notification-content">
+                        <h3>Status Verifikasi Sekolah</h3>
+                        <p>Sekolah yang Anda minati (SDN 45 Jakarta) telah berhasil diverifikasi dan aktif.</p>
+                        <span class="notification-time">1 minggu lalu</span>
+                    </div>
+                </div>
+
+                <div class="notification-card">
+                    <div class="notification-icon">💰</div>
+                    <div class="notification-content">
+                        <h3>Reminder: Donasi Reguler Anda</h3>
+                        <p>Jangan lupa donor rutin bulanan Anda untuk SDN Merdeka. Klilk untuk melanjutkan.</p>
+                        <span class="notification-time">1 minggu lalu</span>
+                    </div>
+                    <button class="btn-text">Donasi Sekarang</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="footer-bottom">
+            <p>&copy; 2025 Scholify. Semua hak cipta dilindungi.</p>
+        </div>
+    </footer>
+</body>
+</html>

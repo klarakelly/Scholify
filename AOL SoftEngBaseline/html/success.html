@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donasi Berhasil - Scholify</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <style>
+        /* CSS Khusus Struk Digital */
+        .receipt-card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 480px;
+            width: 100%;
+            text-align: center;
+            border-top: 6px solid #EB9329; /* Brand Color */
+            position: relative;
+        }
+        /* Efek kertas struk bergerigi di bawah (opsional, untuk estetika) */
+        .receipt-card::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            right: 0;
+            height: 20px;
+            background: radial-gradient(circle, transparent 10px, white 11px);
+            background-size: 20px 20px;
+            background-position: bottom;
+        }
+
+        .success-icon {
+            width: 70px;
+            height: 70px;
+            background: #d4edda;
+            color: #155724;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 32px;
+        }
+
+        .receipt-list {
+            margin: 30px 0;
+            border-top: 2px dashed #eee;
+            border-bottom: 2px dashed #eee;
+            padding: 20px 0;
+            text-align: left;
+        }
+
+        .receipt-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        .receipt-row strong {
+            color: #333;
+            font-weight: 600;
+        }
+
+        .receipt-total {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+            font-size: 18px;
+            font-weight: bold;
+            color: #EB9329;
+        }
+
+        .shipping-instruction {
+            background: #FFF8F0;
+            border: 1px solid #F9D5A3;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: left;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body class="success-page" style="display: flex; align-items: center; justify-content: center; min-height: 100vh; background: #f5f5f5;">
+    
+    <div class="success-container" style="width: 100%; max-width: 480px; padding: 20px;">
+        
+        <div class="receipt-card">
+            <div class="success-icon">✓</div>
+
+            <h1 id="title-text" style="font-size: 24px; margin-bottom: 5px;">Terima Kasih!</h1>
+            <p id="subtitle-text" style="color: #888; font-size: 14px;">Transaksi Anda telah dicatat</p>
+
+            <div class="receipt-list" id="receipt-content">
+                </div>
+
+            <div id="shipping-box" style="display: none;">
+                <p style="text-align: left; font-weight: bold; font-size: 14px; margin-bottom: 8px;">📍 Alamat Pengiriman Sekolah:</p>
+                <div class="shipping-instruction">
+                    <strong style="color: #333;">SD Nusantara</strong><br>
+                    Jl. Merdeka No. 45, Jakarta Selatan 12345<br>
+                    UP: Ibu Siti (Kepala Sekolah)<br>
+                    Telp: (021) 1234-5678
+                    <hr style="border: 0; border-top: 1px dashed #ccc; margin: 10px 0;">
+                    <small>Mohon sertakan Kode Referensi <strong><span id="ref-code"></span></strong> pada paket.</small>
+                </div>
+            </div>
+
+            <div style="margin-top: 30px; display: flex; flex-direction: column; gap: 10px;">
+                <button class="btn-cta" onclick="window.location.href='fundraisers.html'">Donasi Lagi</button>
+                <button class="btn-text" onclick="window.location.href='school-profile.html?id=1'">Lihat Profil Sekolah</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // LOGIC STRUK DINAMIS (Poin 4)
+        // Membaca data yang dikirim dari halaman sebelumnya
+        const data = JSON.parse(localStorage.getItem('lastDonation'));
+
+        if (data) {
+            const container = document.getElementById('receipt-content');
+            let html = '';
+
+            // Data Umum (Ada di kedua tipe)
+            html += `<div class="receipt-row"><span>Kode Referensi</span> <strong>${data.id}</strong></div>`;
+            html += `<div class="receipt-row"><span>Tanggal</span> <strong>${data.date}</strong></div>`;
+            html += `<div class="receipt-row"><span>Tujuan Donasi</span> <strong>SD Nusantara</strong></div>`;
+
+            if (data.type === 'uang') {
+                // === SKENARIO 1: DONASI UANG ===
+                document.getElementById('title-text').innerText = "Pembayaran Berhasil";
+                document.getElementById('subtitle-text').innerText = "Dana telah diteruskan ke sekolah";
+                
+                // Format Rupiah
+                const formattedAmount = parseInt(data.amount).toLocaleString('id-ID');
+                // Mapping nama metode biar rapi
+                const methodMap = { 
+                    'qris': 'QRIS (Instant)', 
+                    'bca': 'BCA Virtual Account', 
+                    'mandiri': 'Mandiri VA',
+                    'bni': 'BNI Virtual Account'
+                };
+                
+                html += `<div class="receipt-row"><span>Metode Bayar</span> <strong>${methodMap[data.method] || data.method}</strong></div>`;
+                html += `<div class="receipt-total">
+                            <span>Total Donasi</span> 
+                            <span>Rp ${formattedAmount}</span>
+                         </div>`;
+            
+            } else {
+                // === SKENARIO 2: DONASI BARANG ===
+                document.getElementById('title-text').innerText = "Komitmen Dicatat";
+                document.getElementById('subtitle-text').innerText = "Mohon selesaikan pengiriman barang";
+                
+                // Mapping metode kirim
+                const shipMap = {
+                    'sendiri': 'Antar Sendiri',
+                    'kurir': 'Ekspedisi (JNE/GoSend)',
+                    'jemput': 'Request Penjemputan'
+                };
+
+                html += `<div class="receipt-row"><span>Item Donasi</span> <strong>${data.items}</strong></div>`;
+                html += `<div class="receipt-row"><span>Metode Kirim</span> <strong>${shipMap[data.shipment] || '-'}</strong></div>`;
+                html += `<div class="receipt-row"><span>Status</span> <strong style="color: #e67e22;">Menunggu Barang</strong></div>`;
+
+                // Tampilkan Kotak Alamat
+                document.getElementById('shipping-box').style.display = 'block';
+                document.getElementById('ref-code').innerText = data.id;
+            }
+
+            container.innerHTML = html;
+        } else {
+            // Fallback jika halaman dibuka langsung tanpa data
+            document.getElementById('receipt-content').innerHTML = '<p style="text-align:center;">Data donasi tidak ditemukan.</p>';
+        }
+    </script>
+</body>
+</html>

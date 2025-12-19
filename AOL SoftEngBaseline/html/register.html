@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Donatur - Scholify</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+</head>
+<body class="auth-page">
+    
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <img src="../Assets/gambar only.png" alt="Scholify Logo" class="logo-img">
+                <span class="logo-text">Scholify</span>
+            </a>
+            
+            <nav class="nav-menu">
+                <a href="fundraisers.html" class="nav-link">Donasi</a>
+                <a href="login-institusi.html" class="nav-link">Galang Dana</a>
+                <a href="about.html" class="nav-link">About Us</a>
+            </nav>
+
+            <div class="header-actions">
+                <div class="search-container">
+                    <input type="text" placeholder="Cari sekolah..." class="search-input">
+                    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                </div>
+                <button class="btn-primary" onclick="window.location.href='login.html'">Masuk</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="auth-container">
+        <div class="auth-card register-card">
+            <div class="auth-header">
+                <a href="index.html">
+                    <img src="../Assets/gambar only.png" alt="Scholify" class="auth-logo">
+                </a>
+                <h1>Daftar ke Scholify</h1>
+                <p>Jadilah Donatur dan Bantu Pendidikan</p>
+            </div>
+
+            <form class="auth-form" id="register-form">
+                <div class="form-group">
+                    <label for="name">Nama Lengkap</label>
+                    <input type="text" id="name" name="name" placeholder="Nama anda" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="email@contoh.com" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="birthdate">Tanggal Lahir</label>
+                        <input type="date" id="birthdate" name="birthdate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="location">Lokasi</label>
+                        <select id="location" name="location" required>
+                            <option value="">Pilih Lokasi</option>
+                            <option value="Jakarta">Jakarta</option>
+                            <option value="Bandung">Bandung</option>
+                            <option value="Surabaya">Surabaya</option>
+                            <option value="Medan">Medan</option>
+                            <option value="Yogyakarta">Yogyakarta</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="••••••••" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirm-password">Konfirmasi Password</label>
+                    <input type="password" id="confirm-password" name="confirm-password" placeholder="••••••••" required>
+                </div>
+
+                <label class="terms-agreement">
+                    <input type="checkbox" required>
+                    <span>Saya setuju dengan <a href="#">Syarat & Ketentuan</a></span>
+                </label>
+
+                <button type="submit" class="btn-cta">Daftar</button>
+            </form>
+
+            <div class="auth-footer">
+                <p>Sudah punya akun? <a href="login.html">Masuk di sini</a></p>
+            </div>
+        </div>
+
+        <div class="auth-illustration">
+            <img src="../Assets/ruang kelas.jpg" alt="Illustration">
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4 class="footer-title">Scholify</h4>
+                <p class="footer-description">Platform donasi terpercaya untuk pendidikan Indonesia</p>
+                <div class="social-links">
+                    <a href="#" class="social-link">Facebook</a>
+                    <a href="#" class="social-link">Instagram</a>
+                    <a href="#" class="social-link">Twitter</a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h4 class="footer-title">Donasi</h4>
+                <ul class="footer-links">
+                    <li><a href="fundraisers.html">Cari Sekolah</a></li>
+                    <li><a href="#">Donasi Barang</a></li>
+                    <li><a href="#">Donasi Uang</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4 class="footer-title">Institusi</h4>
+                <ul class="footer-links">
+                    <li><a href="login-institusi.html">Daftar Sekolah</a></li>
+                    <li><a href="#">Panduan</a></li>
+                    <li><a href="#">Hubungi Kami</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4 class="footer-title">Bantuan</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Pusat Bantuan</a></li>
+                    <li><a href="#">Privasi</a></li>
+                    <li><a href="#">Syarat & Ketentuan</a></li>
+                    <li><a href="#">Hubungi Support</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Scholify. Semua hak cipta dilindungi.</p>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+    <script>
+        document.getElementById('register-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirm-password').value;
+            
+            // 1. Email Validation Regex
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailPattern.test(email)) {
+                alert('Format email tidak valid! Harap gunakan format seperti nama@email.com');
+                return;
+            }
+
+            // 2. Password Match Validation
+            if (password !== confirmPassword) {
+                alert('Password tidak cocok!');
+                return;
+            }
+            
+            alert('Pendaftaran berhasil! Silakan login dengan akun baru anda.');
+            window.location.href = 'login.html';
+        });
+    </script>
+</body>
+</html>

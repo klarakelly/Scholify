@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ & Bantuan - Scholify</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <style>
+        /* CSS Khusus Halaman FAQ */
+        .faq-header {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #EB9329 0%, #d97e0f 100%);
+            color: white;
+            border-radius: 0 0 20px 20px;
+            margin-bottom: 40px;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .faq-category {
+            margin-bottom: 40px;
+        }
+
+        .faq-category h2 {
+            font-size: 24px;
+            color: #3f291c;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e8e0d0;
+        }
+
+        /* Accordion Style */
+        details {
+            background: white;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        details:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        summary {
+            padding: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            list-style: none; /* Hide default arrow */
+            position: relative;
+            padding-right: 40px;
+            color: #3f291c;
+        }
+
+        /* Custom Arrow */
+        summary::after {
+            content: '+';
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 24px;
+            color: #EB9329;
+            font-weight: bold;
+            transition: transform 0.3s ease;
+        }
+
+        details[open] summary::after {
+            transform: translateY(-50%) rotate(45deg);
+        }
+
+        details[open] summary {
+            border-bottom: 1px solid #f0f0f0;
+            color: #EB9329;
+        }
+
+        .faq-answer {
+            padding: 20px;
+            color: #666;
+            line-height: 1.6;
+            background: #fafafa;
+        }
+
+        /* Contact Box */
+        .contact-box {
+            text-align: center;
+            background: #fff8f0;
+            border: 1px dashed #EB9329;
+            padding: 40px;
+            border-radius: 16px;
+            margin-top: 60px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <img src="../Assets/gambar only.png" alt="Scholify Logo" class="logo-img">
+                <span class="logo-text">Scholify</span>
+            </a>
+            
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="fundraisers.html" class="nav-link">Donasi</a>
+                <a href="about.html" class="nav-link">About Us</a>
+            </nav>
+
+            <div class="header-actions">
+                <button class="btn-primary" onclick="window.location.href='login.html'">Masuk</button>
+            </div>
+        </div>
+    </header>
+
+    <div class="faq-header">
+        <h1 style="font-size: 36px; margin-bottom: 10px;">Pusat Bantuan</h1>
+        <p style="opacity: 0.9;">Temukan jawaban atas pertanyaan Anda seputar Scholify</p>
+    </div>
+
+    <div class="faq-container">
+        
+        <div class="faq-category">
+            <h2>🏠 Umum</h2>
+            
+            <details>
+                <summary>Apa itu Scholify?</summary>
+                <div class="faq-answer">
+                    Scholify adalah platform donasi gotong royong yang menghubungkan sekolah-sekolah di Indonesia yang membutuhkan fasilitas (seperti meja, kursi, komputer) dengan donatur yang ingin berkontribusi memajukan pendidikan.
+                </div>
+            </details>
+
+            <details>
+                <summary>Apakah Scholify resmi dan terpercaya?</summary>
+                <div class="faq-answer">
+                    Ya, kami memverifikasi setiap sekolah yang mendaftar secara manual melalui dokumen resmi (NPSN dan SK Pendirian) untuk memastikan donasi Anda sampai ke pihak yang tepat.
+                </div>
+            </details>
+        </div>
+
+        <div class="faq-category">
+            <h2>❤️ Untuk Donatur</h2>
+            
+            <details>
+                <summary>Bagaimana cara melakukan donasi?</summary>
+                <div class="faq-answer">
+                    Pilih sekolah atau kampanye yang ingin Anda bantu di halaman "Donasi", klik tombol "Donasi Sekarang", lalu pilih apakah Anda ingin mendonasikan Barang atau Uang, dan ikuti instruksi pembayaran/pengiriman.
+                </div>
+            </details>
+
+            <details>
+                <summary>Apakah saya bisa mendonasikan barang bekas?</summary>
+                <div class="faq-answer">
+                    Bisa, asalkan barang tersebut masih layak pakai dan kondisinya baik (minimal 80%). Kami menyarankan untuk menyertakan foto kondisi barang saat mengisi formulir donasi.
+                </div>
+            </details>
+
+            <details>
+                <summary>Bagaimana saya tahu donasi saya sudah diterima?</summary>
+                <div class="faq-answer">
+                    Anda akan mendapatkan notifikasi real-time di dashboard akun Anda. Selain itu, sekolah diwajibkan mengunggah foto bukti penerimaan barang di halaman profil sekolah sebagai bentuk transparansi.
+                </div>
+            </details>
+        </div>
+
+        <div class="faq-category">
+            <h2>🏫 Untuk Sekolah</h2>
+            
+            <details>
+                <summary>Syarat apa saja untuk mendaftarkan sekolah?</summary>
+                <div class="faq-answer">
+                    Sekolah harus memiliki NPSN aktif, melampirkan SK Pendirian/Izin Operasional, KTP Kepala Sekolah, dan foto kondisi sekolah terkini.
+                </div>
+            </details>
+
+            <details>
+                <summary>Apakah ada biaya administrasi?</summary>
+                <div class="faq-answer">
+                    Pendaftaran sekolah 100% GRATIS. Untuk donasi berupa uang, terdapat biaya platform sebesar 5% untuk pemeliharaan sistem dan biaya gateway pembayaran. Untuk donasi barang, tidak ada potongan biaya apapun.
+                </div>
+            </details>
+        </div>
+
+        <div class="contact-box">
+            <h3 style="color: #EB9329; margin-bottom: 10px;">Masih butuh bantuan?</h3>
+            <p style="margin-bottom: 20px; color: #666;">Tim support kami siap membantu Anda Senin - Jumat (09.00 - 17.00)</p>
+            <button class="btn-primary" onclick="location.href='mailto:support@scholify.id'">Hubungi Kami via Email</button>
+        </div>
+
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4 class="footer-title">Scholify</h4>
+                <p class="footer-description">Platform donasi terpercaya untuk pendidikan Indonesia</p>
+                <div class="social-links">
+                    <a href="#" class="social-link">Facebook</a>
+                    <a href="#" class="social-link">Instagram</a>
+                    <a href="#" class="social-link">Twitter</a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h4 class="footer-title">Donasi</h4>
+                <ul class="footer-links">
+                    <li><a href="fundraisers.html">Cari Sekolah</a></li>
+                    <li><a href="#">Donasi Barang</a></li>
+                    <li><a href="#">Donasi Uang</a></li>
+                    <li><a href="faq.html" style="color: #EB9329; font-weight: bold;">FAQ</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4 class="footer-title">Institusi</h4>
+                <ul class="footer-links">
+                    <li><a href="login-institusi.html">Daftar Sekolah</a></li>
+                    <li><a href="#">Panduan</a></li>
+                    <li><a href="#">Hubungi Kami</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4 class="footer-title">Bantuan</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Pusat Bantuan</a></li>
+                    <li><a href="#">Privasi</a></li>
+                    <li><a href="#">Syarat & Ketentuan</a></li>
+                    <li><a href="#">Hubungi Support</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 Scholify. Semua hak cipta dilindungi.</p>
+        </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+</body>
+</html>

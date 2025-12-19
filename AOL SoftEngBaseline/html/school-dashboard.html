@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Sekolah - Scholify</title>
+    <link rel="stylesheet" href="../styles/styles.css">
+    <style>
+        /* CSS Khusus Dashboard */
+        .dashboard-layout { display: flex; min-height: 100vh; background: #f5f5f5; }
+        .sidebar { width: 260px; background: #fff; border-right: 1px solid #e8e0d0; padding: 20px; position: fixed; height: 100vh; }
+        .main-content { margin-left: 260px; flex: 1; padding: 30px; }
+        
+        .sidebar-menu { list-style: none; margin-top: 40px; padding: 0; }
+        .sidebar-menu li { margin-bottom: 10px; }
+        .sidebar-menu a { display: flex; align-items: center; gap: 10px; padding: 12px 15px; color: #666; text-decoration: none; border-radius: 8px; transition: 0.3s; font-weight: 500; }
+        .sidebar-menu a.active, .sidebar-menu a:hover { background: #FFF8F0; color: #EB9329; }
+        
+        .header-actions { display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px; }
+        .year-select { padding: 10px 20px; border: 1px solid #ddd; border-radius: 8px; font-size: 16px; cursor: pointer; }
+        
+        .stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 30px; }
+        
+        /* Pie Chart */
+        .chart-section { background: white; padding: 30px; border-radius: 16px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); display: flex; gap: 50px; align-items: center; }
+        .pie-chart { width: 250px; height: 250px; border-radius: 50%; position: relative; transition: background 0.5s ease; }
+        .pie-chart::after { content: ""; position: absolute; width: 140px; height: 140px; background: white; border-radius: 50%; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+        
+        .chart-legend ul { list-style: none; padding: 0; }
+        .chart-legend li { margin-bottom: 12px; display: flex; align-items: center; gap: 10px; font-size: 15px; }
+        .color-dot { width: 12px; height: 12px; border-radius: 4px; display: inline-block; }
+    </style>
+</head>
+<body>
+    <div class="dashboard-layout">
+        <aside class="sidebar">
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 20px;">
+                <img src="../Assets/gambar only.png" style="width: 40px;">
+                <span style="font-weight: bold; font-size: 20px;">Scholify Partner</span>
+            </div>
+            <div style="padding: 15px; background: #f9f9f9; border-radius: 8px; margin-bottom: 20px;">
+                <strong style="display: block;">SD Nusantara</strong>
+                <small style="color: #666;">Akun Sekolah</small>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="school-dashboard.html" class="active">📊 Ringkasan</a></li>
+                <li><a href="school-campaigns.html">📢 Kampanye Saya</a></li>
+                <li><a href="school-reports.html">📦 Laporan Donasi</a></li>
+                <li><a href="index.html" style="color: #dc3545; margin-top: 50px;">🚪 Keluar</a></li>
+            </ul>
+        </aside>
+
+        <main class="main-content">
+            <div class="header-actions">
+                <h1>Ringkasan Donasi</h1>
+                <select id="yearFilter" class="year-select" onchange="updateDashboard()">
+                    <option value="all">Semua Tahun</option>
+                    <option value="2025">Tahun 2025</option>
+                    <option value="2024">Tahun 2024</option>
+                </select>
+            </div>
+
+            <div class="stats-grid">
+                <div class="stat-box" style="background: white; padding: 20px; border-radius: 12px;">
+                    <h3>Rp <span id="totalMoney">0</span></h3>
+                    <p>Dana Terkumpul</p>
+                </div>
+                <div class="stat-box" style="background: white; padding: 20px; border-radius: 12px;">
+                    <h3><span id="totalGoods">0</span> Unit</h3>
+                    <p>Barang Diterima</p>
+                </div>
+                <div class="stat-box" style="background: white; padding: 20px; border-radius: 12px;">
+                    <h3><span id="campaignCount">0</span></h3>
+                    <p>Kampanye Selesai</p>
+                </div>
+            </div>
+
+            <h2 style="margin-bottom: 20px;">Sebaran Kategori Kampanye</h2>
+            <div class="chart-section">
+                <div class="pie-chart" id="categoryChart"></div>
+                <div class="chart-legend">
+                    <h3 id="chartTitle">Semua Tahun</h3>
+                    <ul id="legendList"></ul>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Data Dasar (Dummy)
+        const baseData = {
+            '2025': { money: 150000000, goods: 120, campaigns: 5, categories: { 'Infrastruktur': { percent: 60, color: '#EB9329', value: 'Rp 90 Juta' }, 'Elektronik': { percent: 30, color: '#F9D5A3', value: 'Rp 45 Juta' }, 'Buku': { percent: 10, color: '#F3E5AB', value: 'Rp 15 Juta' } } },
+            '2024': { money: 80000000, goods: 450, campaigns: 8, categories: { 'Infrastruktur': { percent: 20, color: '#EB9329', value: 'Rp 16 Juta' }, 'Alat Tulis': { percent: 50, color: '#5D4037', value: 'Rp 40 Juta' }, 'Lainnya': { percent: 30, color: '#F3E5AB', value: 'Rp 24 Juta' } } },
+            'all': { money: 230000000, goods: 570, campaigns: 13, categories: { 'Infrastruktur': { percent: 45, color: '#EB9329', value: 'Rp 106 Juta' }, 'Elektronik': { percent: 20, color: '#F9D5A3', value: 'Rp 45 Juta' }, 'Alat Tulis': { percent: 20, color: '#5D4037', value: 'Rp 40 Juta' }, 'Lainnya': { percent: 15, color: '#F3E5AB', value: 'Rp 39 Juta' } } }
+        };
+
+        function updateDashboard() {
+            const selectedYear = document.getElementById('yearFilter').value;
+            
+            // LOGIC MATANG: Gabungkan Data Dummy + Data Real dari LocalStorage (Poin 6)
+            let currentMoney = baseData[selectedYear].money;
+            let currentGoods = baseData[selectedYear].goods;
+            
+            // Cek apakah ada donasi baru dari tes user
+            const lastDonation = JSON.parse(localStorage.getItem('lastDonation'));
+            if (lastDonation) {
+                // Jika tahun donasi sesuai (atau filter 'all'), tambahkan ke total
+                // (Untuk simulasi, kita anggap semua donasi baru masuk 2025/All)
+                if (selectedYear === 'all' || selectedYear === '2025') {
+                    if (lastDonation.type === 'uang') {
+                        currentMoney += parseInt(lastDonation.amount);
+                    } else {
+                        currentGoods += 1; // Asumsi 1 paket barang
+                    }
+                }
+            }
+
+            // Update UI Angka
+            document.getElementById('totalMoney').innerText = currentMoney.toLocaleString('id-ID');
+            document.getElementById('totalGoods').innerText = currentGoods;
+            document.getElementById('campaignCount').innerText = baseData[selectedYear].campaigns;
+            document.getElementById('chartTitle').innerText = selectedYear === 'all' ? 'Sepanjang Waktu' : `Tahun ${selectedYear}`;
+
+            // Update UI Pie Chart
+            renderChart(baseData[selectedYear].categories);
+        }
+
+        function renderChart(categories) {
+            let gradientString = 'conic-gradient(';
+            let currentPercent = 0;
+            let legendHTML = '';
+            const keys = Object.keys(categories);
+
+            keys.forEach((key, index) => {
+                const item = categories[key];
+                const start = currentPercent;
+                const end = currentPercent + item.percent;
+                
+                gradientString += `${item.color} ${start}% ${end}%`;
+                if (index < keys.length - 1) gradientString += ', ';
+                currentPercent = end;
+
+                legendHTML += `<li><span class="color-dot" style="background: ${item.color}"></span> <strong>${key}</strong> (${item.percent}%) - ${item.value}</li>`;
+            });
+
+            gradientString += ')';
+            document.getElementById('categoryChart').style.background = gradientString;
+            document.getElementById('legendList').innerHTML = legendHTML;
+        }
+
+        window.onload = updateDashboard;
+    </script>
+</body>
+</html>
